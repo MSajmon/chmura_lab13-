@@ -18,8 +18,6 @@ Zmieniono sposób przekazywania danych wrażliwych:
 - `MYSQL_ROOT_PASSWORD` → przekazywane jako `db_root_password` z pliku `secrets/db_root_password.txt`
 - `MYSQL_PASSWORD` → przekazywane jako `db_password` z pliku `secrets/db_password.txt`
 
-## Uruchomienie
-
 ##  Uruchomienie projektu
 docker compose up -d
 
