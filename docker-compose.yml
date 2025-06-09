@@ -25,10 +25,10 @@ services:
     image: mysql:8.3
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
       MYSQL_DATABASE: testdb
       MYSQL_USER: testuser
-      MYSQL_PASSWORD: testpass
+      MYSQL_PASSWORD_FILE: /run/secrets/db_password
     volumes:
       - db_data:/var/lib/mysql
     networks:
@@ -54,3 +54,9 @@ volumes:
 networks:
   backend:
   frontend:
+
+secrets:
+  db_root_password:
+    file: ./secrets/db_root_password.txt
+  db_password:
+    file: ./secrets/db_password.txt
