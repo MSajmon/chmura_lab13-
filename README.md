@@ -1,4 +1,4 @@
-# Laboratorium 12 – Stack LEMP + phpMyAdmin z Docker Compose
+# Laboratorium 13 – Sekrety w Docker Compose
 
 ##  Opis projektu
 
@@ -10,6 +10,15 @@ Projekt realizuje stack LEMP (Linux, Nginx, MySQL, PHP-FPM) z dodatkową usług�
 - **PHP-FPM** — interpreter PHP
 - **MySQL 8.3** — baza danych (zainicjalizowana)
 - **phpMyAdmin** (port: `6001`) — interfejs webowy do MySQL
+
+## Sekrety
+
+Zmieniono sposób przekazywania danych wrażliwych:
+
+- `MYSQL_ROOT_PASSWORD` → przekazywane jako `db_root_password` z pliku `secrets/db_root_password.txt`
+- `MYSQL_PASSWORD` → przekazywane jako `db_password` z pliku `secrets/db_password.txt`
+
+## Uruchomienie
 
 ##  Uruchomienie projektu
 docker compose up -d

@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   nginx:
     image: nginx:1.25
@@ -23,6 +21,7 @@ services:
 
   mysql:
     image: mysql:8.3
+    container_name: mysql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
@@ -33,6 +32,10 @@ services:
       - db_data:/var/lib/mysql
     networks:
       - backend
+    secrets:
+      - db_root_password
+      - db_password
+
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:5.2
@@ -41,12 +44,15 @@ services:
     environment:
       PMA_HOST: mysql
       PMA_USER: testuser
-      PMA_PASSWORD: testpass
+      PMA_PASSWORD_FILE: /run/secrets/db_password
     depends_on:
       - mysql
     networks:
       - backend #żeby łączyć się z mysql
       - frontend #żeby był widoczny w przeglądarce
+    secrets:
+      - db_password
+      
 
 volumes:
   db_data:
